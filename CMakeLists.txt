@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30)
 
-set(PROJECT_NAME SumaTest)
-set(PROJECT_VERSION 0.0.1)
+set(PROJECT_NAME zaplet)
+set(PROJECT_VERSION 0.1)
 
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION})
 
@@ -19,7 +19,7 @@ configure_file(
 )
 
 set(SOURCES_FILES
-        src/Application.cpp
+        src/main.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES_FILES})
@@ -59,8 +59,41 @@ FetchContent_Declare(CLI11
 )
 FetchContent_MakeAvailable(CLI11)
 
+# cpr
+FetchContent_Declare(cpr
+        GIT_REPOSITORY https://github.com/libcpr/cpr
+        GIT_TAG 1.11.2
+        GIT_SHALLOW ON
+        EXCLUDE_FROM_ALL
+        SYSTEM
+)
+FetchContent_MakeAvailable(cpr)
+
+# nlohmann-json
+FetchContent_Declare(json
+        GIT_REPOSITORY https://github.com/nlohmann/json
+        GIT_TAG v3.11.3
+        GIT_SHALLOW ON
+        EXCLUDE_FROM_ALL
+        SYSTEM
+)
+FetchContent_MakeAvailable(json)
+
+# fmt
+FetchContent_Declare(fmt
+        GIT_REPOSITORY https://github.com/fmtlib/fmt
+        GIT_TAG 11.1.4
+        GIT_SHALLOW ON
+        EXCLUDE_FROM_ALL
+        SYSTEM
+)
+FetchContent_MakeAvailable(fmt)
+
 target_link_libraries(${PROJECT_NAME}
         CLI11::CLI11
+        cpr::cpr
+        nlohmann_json::nlohmann_json
+        fmt::fmt
 )
 
 include(InstallRequiredSystemLibraries)

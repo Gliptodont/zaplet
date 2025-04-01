@@ -1,13 +1,9 @@
 /*
  * Code written by Максим Пискарёв "gliptodont"
- *
- * This file is part of "Mimic" project.
- *
- * For any questions or suggestions, please contact gliptodont@gliptodont.ru.
  */
 
-
-#pragma once
+#ifndef PROJECTMETA_H
+#define PROJECTMETA_H
 
 #define PROJECT_NAME "@PROJECT_NAME@"
 #define PROJECT_VERSION "@PROJECT_VERSION@"
@@ -18,3 +14,5 @@
 #define CMAKE_CXX_COMPILER "@CMAKE_CXX_COMPILER@"
 #define CMAKE_BUILD_TYPE "@CMAKE_BUILD_TYPE@"
 #define CMAKE_GENERATOR "@CMAKE_GENERATOR@"
+
+#endif // PROJECTMETA_H
