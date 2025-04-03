@@ -1,3 +1,7 @@
+/*
+ * Code written by Максим Пискарёв "gliptodont"
+ */
+
 #ifndef VERSION_VERSION_H
 #define VERSION_VERSION_H
 

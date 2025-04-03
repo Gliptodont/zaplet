@@ -1,6 +1,11 @@
 # We collect a list of source files
-file(GLOB_RECURSE ZAPLET_CLI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
-file(GLOB_RECURSE ZAPLET_CLI_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
+set(ZAPLET_CLI_SOURCES
+    src/main.cpp
+)
+
+set(ZAPLET_CLI_HEADERS
+
+)
 
 # Add the executable file
 add_project_executable(zaplet-cli

@@ -10,15 +10,15 @@ FetchContent_Declare(CLI11
 )
 FetchContent_MakeAvailable(CLI11)
 
-# cpr
-FetchContent_Declare(cpr
-        GIT_REPOSITORY https://github.com/libcpr/cpr
-        GIT_TAG 1.11.2
+# cpp-httplib
+FetchContent_Declare(cpp-httplib
+        GIT_REPOSITORY https://github.com/yhirose/cpp-httplib
+        GIT_TAG v0.20.0
         GIT_SHALLOW ON
         EXCLUDE_FROM_ALL
         SYSTEM
 )
-FetchContent_MakeAvailable(cpr)
+FetchContent_MakeAvailable(cpp-httplib)
 
 # nlohmann-json
 FetchContent_Declare(json
@@ -29,6 +29,16 @@ FetchContent_Declare(json
         SYSTEM
 )
 FetchContent_MakeAvailable(json)
+
+# spdlog
+FetchContent_Declare(spdlog
+        GIT_REPOSITORY https://github.com/gabime/spdlog
+        GIT_TAG v1.15.2
+        GIT_SHALLOW ON
+        EXCLUDE_FROM_ALL
+        SYSTEM
+)
+FetchContent_MakeAvailable(spdlog)
 
 # fmt
 FetchContent_Declare(fmt
