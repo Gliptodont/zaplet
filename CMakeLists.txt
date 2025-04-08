@@ -12,7 +12,7 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 
 # Assembly options
-option(BUILD_TESTS "Build test programs" OFF)
+set(BUILD_TESTS OFF CACHE BOOL "Build test programs")
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
 # Testing on if the option is enabled
@@ -20,10 +20,6 @@ if(BUILD_TESTS)
     include(CTest)
     enable_testing()
 endif()
-
-# Inclusion of a directory with our auxiliary cmake modules
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-include(utils)
 
 find_program(CLANG_TIDY_COMMAND NAMES "clang-tidy")
 if (CLANG_TIDY_COMMAND)
@@ -38,3 +34,14 @@ add_subdirectory(lib)
 
 # Inclusion of executable applications
 add_subdirectory(app)
+
+message(STATUS "")
+message(STATUS "========== zaplet Build Configuration ==========")
+message(STATUS "Version:      ${PROJECT_VERSION}")
+message(STATUS "Build Type:   ${CMAKE_BUILD_TYPE}")
+message(STATUS "C++ Standard: ${CMAKE_CXX_STANDARD}")
+message(STATUS "System:       ${CMAKE_SYSTEM_NAME} (${CMAKE_SYSTEM_PROCESSOR})")
+message(STATUS "Compiler:     ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
+message(STATUS "Build Tests:  ${BUILD_TESTS}")
+message(STATUS "===================================================")
+message(STATUS "")

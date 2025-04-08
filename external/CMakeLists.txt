@@ -40,12 +40,12 @@ FetchContent_Declare(spdlog
 )
 FetchContent_MakeAvailable(spdlog)
 
-# fmt
-FetchContent_Declare(fmt
-        GIT_REPOSITORY https://github.com/fmtlib/fmt
-        GIT_TAG 11.1.4
+# gtest
+FetchContent_Declare(gtest
+        GIT_REPOSITORY https://github.com/google/googletest
+        GIT_TAG v1.16.0
         GIT_SHALLOW ON
         EXCLUDE_FROM_ALL
         SYSTEM
 )
-FetchContent_MakeAvailable(fmt)
+FetchContent_MakeAvailable(gtest)

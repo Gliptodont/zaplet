@@ -1,3 +1,5 @@
+set(TARGET_NAME zaplet)
+
 # Configurate a version
 configure_file(
         "${CMAKE_CURRENT_SOURCE_DIR}/include/zaplet/version.h.in"
@@ -6,33 +8,50 @@ configure_file(
 
 # We collect a list of source files
 set(ZAPLET_SOURCES
+        # ini
+        src/ini/INIreader.cpp
+
         # logging
-        src/logging/log_manager.cpp
+        src/logging/logger.cpp
+
+        # http
+        src/http/request.cpp
+        src/http/response.cpp
+        src/http/client.cpp
 )
 
 set(ZAPLET_PUBLIC_HEADERS
+        include/zaplet/zaplet.h
         include/zaplet/version.h
 
+        # ini
+        include/zaplet/ini/INIreader.h
+
         # logging
-        include/zaplet/logging/log_manager.h
+        include/zaplet/logging/log_config.h
+        include/zaplet/logging/utils.h
+        include/zaplet/logging/logger.h
+
+        # http
+        include/zaplet/http/request.h
+        include/zaplet/http/response.h
+        include/zaplet/http/client.h
 )
 
-set(ZAPLET_PRIVATE_HEADERS
-)
+set(LIB_TYPE STATIC)
 
-# Add the library
-add_project_library(zaplet
-        VERSION ${PROJECT_VERSION}
-        SOURCES ${ZAPLET_SOURCES}
-        PUBLIC_HEADERS ${ZAPLET_PUBLIC_HEADERS}
-        PRIVATE_HEADERS ${ZAPLET_PRIVATE_HEADERS}
-        DEPENDENCIES spdlog::spdlog
-)
-
-# Add the pseudonym to the target
-add_library(${PROJECT_NAME}::zaplet ALIAS zaplet)
-
-# We connect the tests if they are turned on
-if (BUILD_TESTS)
-    add_subdirectory(tests)
+if (BUILD_SHARED_LIBS)
+    set(LIB_TYPE SHARED)
 endif ()
+
+
+add_library(${TARGET_NAME} ${LIB_TYPE} ${ZAPLET_SOURCES} ${ZAPLET_PUBLIC_HEADERS})
+
+target_include_directories(${TARGET_NAME}
+        PUBLIC include
+)
+
+target_link_libraries(${TARGET_NAME}
+        spdlog::spdlog
+        httplib::httplib
+)
