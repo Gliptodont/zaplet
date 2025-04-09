@@ -30,7 +30,7 @@ namespace zaplet::http
         std::chrono::milliseconds getLatency() const;
         void setLatency(std::chrono::milliseconds latency);
 
-        const std::optional<std::string>& gerError() const;
+        const std::optional<std::string>& getError() const;
         void setError(const std::string& error);
         bool hasError() const;
 

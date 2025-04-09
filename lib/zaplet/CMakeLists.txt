@@ -15,9 +15,16 @@ set(ZAPLET_SOURCES
         src/logging/logger.cpp
 
         # http
+        #src/http/http_wrapper.cpp
         src/http/request.cpp
         src/http/response.cpp
         src/http/client.cpp
+
+        # output
+        src/output/formatter_factory.cpp
+        src/output/format/json_formatter.cpp
+        src/output/format/yaml_formatter.cpp
+        src/output/format/table_formatter.cpp
 )
 
 set(ZAPLET_PUBLIC_HEADERS
@@ -33,9 +40,17 @@ set(ZAPLET_PUBLIC_HEADERS
         include/zaplet/logging/logger.h
 
         # http
+        #include/zaplet/http/http_wrapper.h
         include/zaplet/http/request.h
         include/zaplet/http/response.h
         include/zaplet/http/client.h
+
+        # output
+        include/zaplet/output/formatter.h
+        include/zaplet/output/formatter_factory.h
+        include/zaplet/output/format/json_formatter.h
+        include/zaplet/output/format/yaml_formatter.h
+        include/zaplet/output/format/table_formatter.h
 )
 
 set(LIB_TYPE STATIC)
@@ -54,4 +69,5 @@ target_include_directories(${TARGET_NAME}
 target_link_libraries(${TARGET_NAME}
         spdlog::spdlog
         httplib::httplib
+        nlohmann_json
 )

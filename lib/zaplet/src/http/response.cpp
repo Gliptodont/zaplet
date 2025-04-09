@@ -51,7 +51,7 @@ namespace zaplet::http
         m_latency = latency;
     }
 
-    const std::optional<std::string>& Response::gerError() const
+    const std::optional<std::string>& Response::getError() const
     {
         return m_error;
     }

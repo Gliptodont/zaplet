@@ -6,7 +6,7 @@
 
 #include "zaplet/logging/logger.h"
 
-#define CPPHTTPLIB_OPENSSL_SUPPORT
+//#define CPPHTTPLIB_OPENSSL_SUPPORT
 #include <httplib.h>
 
 #include <chrono>
@@ -149,14 +149,10 @@ namespace zaplet::http
         if (!parseUrl(url, scheme, host, port, path))
         {
             LOG_ERROR_FMT("Failed to parse URL: {}", url);
-            return nullptr;
+            return {};
         }
 
-        if (scheme == "https")
-        {
-            return std::make_unique<httplib::SSLClient>(host, port);
-        }
-        else if (scheme == "http")
+        if (scheme == "http" || scheme == "https")
         {
             return std::make_unique<httplib::Client>(host, port);
         }
@@ -166,6 +162,32 @@ namespace zaplet::http
             return nullptr;
         }
     }
+
+    /*
+    std::unique_ptr<httplib::SSLClient> Client::createSSLClient(const std::string& url)
+    {
+        std::string scheme;
+        std::string host;
+        std::string path;
+        int port;
+
+        if (!parseUrl(url, scheme, host, port, path))
+        {
+            LOG_ERROR_FMT("Failed to parse URL: {}", url);
+            return {};
+        }
+
+        if (scheme == "https")
+        {
+            return std::make_unique<httplib::SSLClient>(host, port);
+        }
+        else
+        {
+            LOG_ERROR_FMT("Unsupported scheme: {}", scheme);
+            return nullptr;
+        }
+    }
+    */
 
     bool Client::parseUrl(const std::string& url, std::string& scheme, std::string& host, int& port, std::string& path)
     {
@@ -186,7 +208,7 @@ namespace zaplet::http
                 port = (scheme == "https") ? 443 : 80;
             }
 
-            path = matches[4] ? matches[4].str() : "/";
+            path = matches[4].matched ? matches[4].str() : "/";
 
             return true;
         }
