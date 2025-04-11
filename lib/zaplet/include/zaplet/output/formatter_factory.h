@@ -15,7 +15,7 @@ namespace zaplet::output
     class FormatterFactory
     {
     public:
-        static std::shared_ptr<Formmater> create(const std::string& format);
+        static std::shared_ptr<Formatter> create(const std::string& format);
     };
 }
 

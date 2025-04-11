@@ -191,7 +191,7 @@ namespace zaplet::logging
             m_logger = std::make_shared<spdlog::logger>(m_config.loggerName, sinks.begin(), sinks.end());
         }
 
-        spdlog::flush_every(std::chrono::seconds(2));
+        spdlog::flush_every(std::chrono::seconds(3));
         m_logger->set_level(convertLogLevel(m_config.level));
 
         spdlog::register_logger(m_logger);
@@ -200,5 +200,15 @@ namespace zaplet::logging
         {
             spdlog::set_default_logger(m_logger);
         }
+    }
+
+    void Logger::flush() const
+    {
+        spdlog::flush_on(convertLogLevel(LogLevel::Trace));
+        spdlog::flush_on(convertLogLevel(LogLevel::Debug));
+        spdlog::flush_on(convertLogLevel(LogLevel::Info));
+        spdlog::flush_on(convertLogLevel(LogLevel::Warning));
+        spdlog::flush_on(convertLogLevel(LogLevel::Error));
+        spdlog::flush_on(convertLogLevel(LogLevel::Fatal));
     }
 } // namespace zaplet::logging

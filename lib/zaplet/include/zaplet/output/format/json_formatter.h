@@ -9,7 +9,7 @@
 
 namespace zaplet::output
 {
-    class JsonFormatter : public Formmater
+    class JsonFormatter : public Formatter
     {
     public:
         std::string format(const http::Response& response) const override;

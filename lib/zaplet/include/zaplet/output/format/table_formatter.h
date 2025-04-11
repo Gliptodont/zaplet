@@ -9,7 +9,7 @@
 
 namespace zaplet::output
 {
-    class TableFormatter : public Formmater
+    class TableFormatter : public Formatter
     {
     public:
         std::string format(const http::Response& response) const override;

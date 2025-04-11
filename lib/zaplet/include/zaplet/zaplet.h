@@ -20,4 +20,8 @@
 #include "zaplet/http/request.h"
 #include "zaplet/http/response.h"
 
+// output
+#include "zaplet/output/formatter_factory.h"
+#include "zaplet/output/formatter.h"
+
 #endif // ZAPLET_H

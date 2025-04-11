@@ -34,17 +34,13 @@ namespace zaplet::logging
         bool reconfigureFromIni(const std::string& configPath);
 
         void trace(const std::string& msg) const;
-
         void debug(const std::string& msg) const;
-
         void info(const std::string& msg) const;
-
         void warning(const std::string& msg) const;
-
         void error(const std::string& msg) const;
-
         void fatal(const std::string& msg) const;
 
+        void flush() const;
     private:
         Logger();
 

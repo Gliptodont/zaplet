@@ -4,6 +4,8 @@
 
 #include "zaplet/http/response.h"
 
+#include <iostream>
+
 namespace zaplet::http
 {
     int Response::getStatusCode() const
@@ -69,5 +71,25 @@ namespace zaplet::http
     bool Response::isSuccess() const
     {
         return m_statusCode >= 200 && m_statusCode < 300 && !hasError();
+    }
+
+    void printResponse(const std::string& response, int statusCode)
+    {
+        if (statusCode >= 100 && statusCode < 400)
+        {
+            LOG_INFO_FMT("Response Success: \n{}", response);
+        }
+        else if (statusCode >= 400 && statusCode < 500)
+        {
+            LOG_WARNING_FMT("Response Warning: \n{}", response);
+        }
+        else if (statusCode >= 500 && statusCode <= 599)
+        {
+            LOG_ERROR_FMT("Response Error: \n{}", response);
+        }
+        else
+        {
+            LOG_DEBUG("Unhandled status code: " + std::to_string(statusCode) + " | " + response);
+        }
     }
 } // namespace zaplet::http

@@ -17,23 +17,23 @@ namespace zaplet::http
     public:
         Request() = default;
 
-        const std::string& getUrl() const;
+        [[nodiscard]] const std::string& getUrl() const;
         void setUrl(const std::string& url);
 
-        const std::string& getMethod() const;
+        [[nodiscard]] const std::string& getMethod() const;
         void setMethod(const std::string& method);
 
-        const std::map<std::string, std::string>& getHeaders() const;
+        [[nodiscard]] const std::map<std::string, std::string>& getHeaders() const;
         void setHeaders(const std::map<std::string, std::string>& headers);
         void addHeader(const std::string& name, const std::string& value);
 
-        const std::optional<std::string>& getBody() const;
+        [[nodiscard]] const std::optional<std::string>& getBody() const;
         void setBody(const std::string& body);
 
-        int getTimeout() const;
+        [[nodiscard]] int getTimeout() const;
         void setTimeout(int timeout);
 
-        const std::map<std::string, std::string>& getQueryParams() const;
+        [[nodiscard]] const std::map<std::string, std::string>& getQueryParams() const;
         void setQueryParams(const std::map<std::string, std::string>& params);
         void addQueryParam(const std::string& name, const std::string& value);
 

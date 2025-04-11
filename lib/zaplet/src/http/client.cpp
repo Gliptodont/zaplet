@@ -6,7 +6,6 @@
 
 #include "zaplet/logging/logger.h"
 
-//#define CPPHTTPLIB_OPENSSL_SUPPORT
 #include <httplib.h>
 
 #include <chrono>
@@ -39,7 +38,7 @@ namespace zaplet::http
                 return response;
             }
 
-            client->set_connection_timeout(std::chrono::seconds(request.getTimeout()));
+            client->setConnectionTimeout(std::chrono::seconds(request.getTimeout()));
 
             httplib::Headers headers;
             for (const auto& [name, value] : request.getHeaders())
@@ -53,51 +52,51 @@ namespace zaplet::http
 
             if (request.getMethod() == "GET")
             {
-                result = client->Get(path, headers);
+                result = client->get(path, headers);
             }
             else if (request.getMethod() == "POST")
             {
                 if (request.getBody())
                 {
-                    result = client->Post(path, headers, request.getBody().value(), "");
+                    result = client->post(path, headers, request.getBody().value());
                 }
                 else
                 {
-                    result = client->Post(path, headers);
+                    result = client->post(path, headers);
                 }
             }
             else if (request.getMethod() == "PUT")
             {
                 if (request.getBody())
                 {
-                    result = client->Put(path, headers, request.getBody().value(), "");
+                    result = client->put(path, headers, request.getBody().value());
                 }
                 else
                 {
-                    result = client->Put(path, headers, "", "");
+                    result = client->put(path, headers);
                 }
             }
             else if (request.getMethod() == "DELETE")
             {
-                result = client->Delete(path, headers);
+                result = client->del(path, headers);
             }
             else if (request.getMethod() == "HEAD")
             {
-                result = client->Head(path, headers);
+                result = client->head(path, headers);
             }
             else if (request.getMethod() == "OPTIONS")
             {
-                result = client->Options(path, headers);
+                result = client->options(path, headers);
             }
             else if (request.getMethod() == "PATCH")
             {
                 if (request.getBody())
                 {
-                    result = client->Patch(path, headers, request.getBody().value(), "");
+                    result = client->patch(path, headers, request.getBody().value());
                 }
                 else
                 {
-                    result = client->Patch(path, headers, "", "");
+                    result = client->patch(path, headers);
                 }
             }
             else
@@ -139,7 +138,7 @@ namespace zaplet::http
         return response;
     }
 
-    std::unique_ptr<httplib::Client> Client::createClient(const std::string& url)
+    std::unique_ptr<IClientWrapper> Client::createClient(const std::string& url)
     {
         std::string scheme;
         std::string host;
@@ -149,12 +148,16 @@ namespace zaplet::http
         if (!parseUrl(url, scheme, host, port, path))
         {
             LOG_ERROR_FMT("Failed to parse URL: {}", url);
-            return {};
+            return nullptr;
         }
 
-        if (scheme == "http" || scheme == "https")
+        if (scheme == "http")
         {
-            return std::make_unique<httplib::Client>(host, port);
+            return std::make_unique<ClientWrapper>(host, port);
+        }
+        else if (scheme == "https")
+        {
+            return std::make_unique<SSLClientWrapper>(host, port);
         }
         else
         {
@@ -162,32 +165,6 @@ namespace zaplet::http
             return nullptr;
         }
     }
-
-    /*
-    std::unique_ptr<httplib::SSLClient> Client::createSSLClient(const std::string& url)
-    {
-        std::string scheme;
-        std::string host;
-        std::string path;
-        int port;
-
-        if (!parseUrl(url, scheme, host, port, path))
-        {
-            LOG_ERROR_FMT("Failed to parse URL: {}", url);
-            return {};
-        }
-
-        if (scheme == "https")
-        {
-            return std::make_unique<httplib::SSLClient>(host, port);
-        }
-        else
-        {
-            LOG_ERROR_FMT("Unsupported scheme: {}", scheme);
-            return nullptr;
-        }
-    }
-    */
 
     bool Client::parseUrl(const std::string& url, std::string& scheme, std::string& host, int& port, std::string& path)
     {

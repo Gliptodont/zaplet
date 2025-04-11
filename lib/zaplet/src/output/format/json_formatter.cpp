@@ -6,6 +6,8 @@
 
 #include <nlohmann/json.hpp>
 
+#include <iostream>
+
 namespace zaplet::output
 {
     std::string JsonFormatter::format(const http::Response& response) const
@@ -29,7 +31,7 @@ namespace zaplet::output
             {
                 jsonResponse["body"] = nlohmann::json::parse(response.getBody());
             }
-            catch (const nlohmann::json::exception&)
+            catch (const nlohmann::json::exception& e)
             {
                 jsonResponse["body"] = response.getBody();
             }

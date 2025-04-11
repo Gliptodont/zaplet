@@ -9,7 +9,7 @@
 
 namespace zaplet::output
 {
-    class YamlFormatter : public Formmater
+    class YamlFormatter : public Formatter
     {
     public:
         std::string format(const http::Response& response) const override;

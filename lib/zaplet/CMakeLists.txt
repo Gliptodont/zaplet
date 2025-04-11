@@ -40,7 +40,7 @@ set(ZAPLET_PUBLIC_HEADERS
         include/zaplet/logging/logger.h
 
         # http
-        #include/zaplet/http/http_wrapper.h
+        include/zaplet/http/http_wrapper.h
         include/zaplet/http/request.h
         include/zaplet/http/response.h
         include/zaplet/http/client.h
@@ -66,8 +66,13 @@ target_include_directories(${TARGET_NAME}
         PUBLIC include
 )
 
+find_package(OpenSSL REQUIRED)
+
 target_link_libraries(${TARGET_NAME}
         spdlog::spdlog
         httplib::httplib
         nlohmann_json
+        OpenSSL::SSL OpenSSL::Crypto
 )
+
+target_compile_definitions(${TARGET_NAME} PRIVATE CPPHTTPLIB_OPENSSL_SUPPORT)
