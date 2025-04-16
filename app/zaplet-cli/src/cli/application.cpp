@@ -61,6 +61,36 @@ namespace zaplet::cli
         getCmd->setupOptions();
         m_commands.push_back(std::move(getCmd));
 
+        auto post = m_cliApp.add_subcommand("post", "Execute HTTP POST request");
+        auto postCmd = std::make_unique<PostCommand>(post, m_client, m_formatter);
+        postCmd->setupOptions();
+        m_commands.push_back(std::move(postCmd));
+
+        auto put = m_cliApp.add_subcommand("put", "Execute HTTP PUT request");
+        auto putCmd = std::make_unique<PutCommand>(put, m_client, m_formatter);
+        putCmd->setupOptions();
+        m_commands.push_back(std::move(putCmd));
+
+        auto del = m_cliApp.add_subcommand("delete", "Execute HTTP DELETE request");
+        auto delCmd = std::make_unique<DeleteCommand>(del, m_client, m_formatter);
+        delCmd->setupOptions();
+        m_commands.push_back(std::move(delCmd));
+
+        auto patch = m_cliApp.add_subcommand("patch", "Execute HTTP PATCH request");
+        auto patchCmd = std::make_unique<PatchCommand>(patch, m_client, m_formatter);
+        patchCmd->setupOptions();
+        m_commands.push_back(std::move(patchCmd));
+
+        auto head = m_cliApp.add_subcommand("head", "Execute HTTP HEAD request");
+        auto headCmd = std::make_unique<HeadCommand>(head, m_client, m_formatter);
+        headCmd->setupOptions();
+        m_commands.push_back(std::move(headCmd));
+
+        auto opt = m_cliApp.add_subcommand("options", "Execute HTTP OPTIONS request");
+        auto optCmd = std::make_unique<OptionsCommand>(opt, m_client, m_formatter);
+        optCmd->setupOptions();
+        m_commands.push_back(std::move(optCmd));
+
         m_cliApp.require_subcommand(1);
     }
 

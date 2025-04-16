@@ -21,25 +21,7 @@ namespace zaplet::cli
     {
         LOG_INFO_FMT("Executing GET request to {}", m_url);
 
-        std::map<std::string, std::string> headerMap;
-        for (const auto& header : m_headers)
-        {
-            auto colonPos = header.find(':');
-            if (colonPos != std::string::npos)
-            {
-                std::string key = header.substr(0, colonPos);
-                std::string value = header.substr(colonPos + 1);
-
-                value.erase(0, value.find_first_not_of(" \t"));
-
-                headerMap[key] = value;
-                LOG_DEBUG_FMT("Header: {}={}", key, value);
-            }
-            else
-            {
-                LOG_WARNING_FMT("Invalid header format: {}", header);
-            }
-        }
+        const std::map<std::string, std::string> headerMap = http::headersVectorToMap(m_headers);
 
         http::Request request;
         request.setUrl(m_url);

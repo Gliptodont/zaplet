@@ -8,10 +8,19 @@
 
 #include <iostream>
 
+#if defined(_WIN32)
+#include <windows.h>
+#endif
+
 int main(int argc, char** argv)
 {
     try
     {
+#if defined(_WIN32)
+        SetConsoleOutputCP(CP_UTF8);
+        SetConsoleCP(CP_UTF8);
+#endif
+
         LOG_INITIALIZE_FROM_INI("config/logger.conf");
 
         zaplet::cli::Application app(argc, argv);

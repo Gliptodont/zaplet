@@ -19,6 +19,7 @@
 #include "zaplet/http/client.h"
 #include "zaplet/http/request.h"
 #include "zaplet/http/response.h"
+#include "zaplet/http/utils.h"
 
 // output
 #include "zaplet/output/formatter_factory.h"
