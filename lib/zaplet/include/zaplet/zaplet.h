@@ -25,4 +25,14 @@
 #include "zaplet/output/formatter_factory.h"
 #include "zaplet/output/formatter.h"
 
+// scenario
+#include "zaplet/scenario/step.h"
+#include "zaplet/scenario/scenario.h"
+
+// zsl
+#include "zaplet/scenario/zsl/zsl_lexer.h"
+#include "zaplet/scenario/zsl/zsl_parser.h"
+#include "zaplet/scenario/zsl/zsl_processor.h"
+
+
 #endif // ZAPLET_H

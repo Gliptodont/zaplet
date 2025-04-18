@@ -25,6 +25,15 @@ set(ZAPLET_SOURCES
         src/output/format/json_formatter.cpp
         src/output/format/yaml_formatter.cpp
         src/output/format/table_formatter.cpp
+
+        # scenario
+        src/scenario/step.cpp
+        src/scenario/scenario.cpp
+
+        # zsl
+        src/scenario/zsl/zsl_lexer.cpp
+        src/scenario/zsl/zsl_parser.cpp
+        src/scenario/zsl/zsl_processor.cpp
 )
 
 set(ZAPLET_PUBLIC_HEADERS
@@ -52,6 +61,15 @@ set(ZAPLET_PUBLIC_HEADERS
         include/zaplet/output/format/json_formatter.h
         include/zaplet/output/format/yaml_formatter.h
         include/zaplet/output/format/table_formatter.h
+
+        # scenario
+        include/zaplet/scenario/step.h
+        include/zaplet/scenario/scenario.h
+
+        # zsl
+        include/zaplet/scenario/zsl/zsl_lexer.h
+        include/zaplet/scenario/zsl/zsl_parser.h
+        include/zaplet/scenario/zsl/zsl_processor.h
 )
 
 set(LIB_TYPE STATIC)
