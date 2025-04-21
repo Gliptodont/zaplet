@@ -82,11 +82,36 @@ namespace zaplet::scenario::zsl
     {
         char c = advance();
 
+        if (c == '/' && !m_tokens.empty() &&
+            (m_tokens.back().type == TokenType::VARIABLE || m_tokens.back().type == TokenType::URL ||
+             m_tokens.back().type == TokenType::IDENTIFIER))
+        {
+            m_start = m_current - 1;
+
+            while (!isAtEnd() &&
+                   (isAlphaNumeric(peek()) || peek() == '/' || peek() == '-' || peek() == '_' || peek() == '.' || peek() == '~' ||
+                    peek() == '%' || peek() == '?' || peek() == '&' || peek() == '='))
+            {
+                advance();
+            }
+
+            std::string path = m_source.substr(m_start, m_current - m_start);
+            addToken(TokenType::URL, path);
+            return;
+        }
+
         switch (c)
         {
-            // Single-character tokens
         case '{':
             addToken(TokenType::LEFT_BRACE);
+            break;
+        case '-':
+            if (isDigit(peek())) {
+                m_current--;
+                number();
+            } else {
+                addToken(TokenType::MINUS);
+            }
             break;
         case '}':
             addToken(TokenType::RIGHT_BRACE);
@@ -98,23 +123,19 @@ namespace zaplet::scenario::zsl
             addToken(TokenType::COLON);
             break;
 
-            // Whitespace
         case ' ':
         case '\r':
         case '\t':
-            // Ignore whitespace
             break;
 
         case '\n':
             m_line++;
             break;
 
-            // Comments
         case '#':
             comment();
             break;
 
-            // String literals
         case '"':
             string('"');
             break;
@@ -122,28 +143,70 @@ namespace zaplet::scenario::zsl
             string('\'');
             break;
 
+        case '$':
+            if (peek() == '{')
+            {
+                scanVariable();
+            }
+            else
+            {
+                identifier();
+            }
+            break;
+
         default:
             if (isDigit(c))
             {
                 number();
             }
-            else if (isAlpha(c))
+            else if (isAlpha(c) || c == '/' || c == ':' || c == '.' || c == '-')
             {
                 identifier();
             }
             else
             {
-                // Unexpected character
-                addToken(TokenType::UNKNOWN);
                 LOG_WARNING_FMT("Unexpected character at line {}: '{}'", m_line, c);
+                addToken(TokenType::UNKNOWN);
             }
             break;
         }
     }
 
-    void Lexer::string(char quote)
+    void Lexer::scanVariable()
     {
-        while (peek() != quote && !isAtEnd())
+        m_start = m_current - 1;
+
+        if (peek() == '{')
+        {
+            advance();
+        }
+
+        while (peek() != '}' && !isAtEnd())
+        {
+            if (peek() == '\n')
+            {
+                m_line++;
+            }
+            advance();
+        }
+
+        if (peek() == '}')
+        {
+            advance();
+
+            std::string variable = m_source.substr(m_start, m_current - m_start);
+            addToken(TokenType::VARIABLE, variable);
+        }
+        else
+        {
+            LOG_WARNING_FMT("Unterminated variable at line {}", m_line);
+            addToken(TokenType::UNKNOWN);
+        }
+    }
+
+    void Lexer::string(char delimiter)
+    {
+        while (peek() != delimiter && !isAtEnd())
         {
             if (peek() == '\n')
             {
@@ -154,7 +217,7 @@ namespace zaplet::scenario::zsl
 
         if (isAtEnd())
         {
-            LOG_ERROR_FMT("Unterminated string at line {}", m_line);
+            LOG_WARNING_FMT("Unterminated string at line {}", m_line);
             addToken(TokenType::UNKNOWN);
             return;
         }
@@ -167,17 +230,20 @@ namespace zaplet::scenario::zsl
 
     void Lexer::number()
     {
-        while (isDigit(peek()))
-        {
+        bool isNegative = false;
+        if (m_source[m_start] == '-') {
+            isNegative = true;
             advance();
         }
 
-        if (peek() == '.' && isDigit(peekNext()))
-        {
+        while (isDigit(peek())) {
+            advance();
+        }
+
+        if (peek() == '.' && isDigit(peekNext())) {
             advance();
 
-            while (isDigit(peek()))
-            {
+            while (isDigit(peek())) {
                 advance();
             }
         }
@@ -188,12 +254,24 @@ namespace zaplet::scenario::zsl
 
     void Lexer::identifier()
     {
-        while (isAlphaNumeric(peek()) || peek() == '_' || peek() == '-' || peek() == '.' || peek() == '$' || peek() == '{' || peek() == '}')
+        while (!isAtEnd() &&
+               (isAlphaNumeric(peek()) || peek() == '_' || peek() == '-' || peek() == '.' || peek() == '/' || peek() == ':' ||
+                peek() == '~' || peek() == '%' || peek() == '?'))
         {
+            if (peek() == '=' || peek() == '{' || peek() == '}' || peek() == '\n')
+            {
+                break;
+            }
             advance();
         }
 
         std::string text = m_source.substr(m_start, m_current - m_start);
+
+        if (text.find("http://") == 0 || text.find("https://") == 0)
+        {
+            addToken(TokenType::URL, text);
+            return;
+        }
 
         static const std::map<std::string, TokenType> keywords = { { "SCENARIO", TokenType::SCENARIO },
                                                                    { "DESCRIPTION", TokenType::DESCRIPTION },

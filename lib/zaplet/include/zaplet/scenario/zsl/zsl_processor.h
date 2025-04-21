@@ -22,7 +22,7 @@ namespace zaplet::scenario::zsl
         std::optional<Scenario> parseFile(const std::filesystem::path& path);
         std::optional<Scenario> parseString(const std::string& source);
 
-        const std::vector<std::string>& getErrors() const;
+        [[nodiscard]] const std::vector<std::string>& getErrors() const;
 
     private:
         std::vector<std::string> m_errors;

@@ -10,6 +10,7 @@
 #include "cli/commands/http/patch.h"
 #include "cli/commands/http/post.h"
 #include "cli/commands/http/put.h"
+#include "cli/commands/scenario/run.h"
 
 #include <format>
 #include <iostream>
@@ -90,6 +91,13 @@ namespace zaplet::cli
         auto optCmd = std::make_unique<OptionsCommand>(opt, m_client, m_formatter);
         optCmd->setupOptions();
         m_commands.push_back(std::move(optCmd));
+
+        auto scenarioCmd = m_cliApp.add_subcommand("scenario", "Scenario management commands");
+
+        auto run = scenarioCmd->add_subcommand("run", "Run a test scenario using ZSL");
+        auto runScenarioCmd = std::make_unique<RunScenarioCommand>(run, m_client, m_formatter);
+        runScenarioCmd->setupOptions();
+        m_commands.push_back(std::move(runScenarioCmd));
 
         m_cliApp.require_subcommand(1);
     }

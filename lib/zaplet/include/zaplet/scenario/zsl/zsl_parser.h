@@ -25,6 +25,9 @@ namespace zaplet::scenario::zsl
 
         const std::vector<std::string>& getErrors() const;
 
+        void dumpToken(const Token& token, const std::string& context);
+        void dumpCurrentToken(const std::string& context);
+
     private:
         std::vector<Token> m_tokens;
         int m_current = 0;
@@ -44,7 +47,7 @@ namespace zaplet::scenario::zsl
         void error(const std::string& message);
 
         void parseScenario();
-        void parseMetadata();
+        void parseMetadata(TokenType metadataType);
         Step parseStep();
         void parseRequest(Step& step);
         void parseExpect(Step& step);

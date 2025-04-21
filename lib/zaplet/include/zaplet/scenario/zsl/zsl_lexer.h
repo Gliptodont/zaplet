@@ -49,11 +49,14 @@ namespace zaplet::scenario::zsl
 
         // Literals
         STRING,
+        MINUS,
         NUMBER,
         IDENTIFIER,
         BOOLEAN,
 
         // Special
+        URL,
+        VARIABLE,
         COMMENT,
         END_OF_FILE,
         UNKNOWN
@@ -90,7 +93,8 @@ namespace zaplet::scenario::zsl
         int m_line = 1;
 
         void scanToken();
-        void string(char quote);
+        void scanVariable();
+        void string(char delimiter);
         void number();
         void identifier();
         void comment();

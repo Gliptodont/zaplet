@@ -18,6 +18,9 @@ set(ZAPLET_CLI_SOURCES
         src/cli/commands/http/head.cpp
         src/cli/commands/http/options.cpp
         src/cli/commands/http/patch.cpp
+
+        # cli/commands/scenario
+        src/cli/commands/scenario/run.cpp
 )
 
 set(ZAPLET_CLI_HEADERS
@@ -36,6 +39,8 @@ set(ZAPLET_CLI_HEADERS
         include/cli/commands/http/options.h
         include/cli/commands/http/patch.h
 
+        # cli/commands/scenario
+        include/cli/commands/scenario/run.h
 )
 
 add_executable(${TARGET_NAME} ${ZAPLET_CLI_SOURCES} ${ZAPLET_CLI_HEADERS})
