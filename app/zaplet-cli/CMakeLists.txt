@@ -20,7 +20,7 @@ set(ZAPLET_CLI_SOURCES
         src/cli/commands/http/patch.cpp
 
         # cli/commands/scenario
-        src/cli/commands/scenario/run.cpp
+        src/cli/commands/scenario/play.cpp
 )
 
 set(ZAPLET_CLI_HEADERS
@@ -40,7 +40,7 @@ set(ZAPLET_CLI_HEADERS
         include/cli/commands/http/patch.h
 
         # cli/commands/scenario
-        include/cli/commands/scenario/run.h
+        include/cli/commands/scenario/play.h
 )
 
 add_executable(${TARGET_NAME} ${ZAPLET_CLI_SOURCES} ${ZAPLET_CLI_HEADERS})
@@ -51,3 +51,9 @@ target_link_libraries(${TARGET_NAME}
         zaplet
         CLI11::CLI11
 )
+
+install(TARGETS ${TARGET_NAME} DESTINATION .)
+
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources/config/ DESTINATION config)
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources/docs/ DESTINATION docs)
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources/example/ DESTINATION example)

@@ -27,13 +27,7 @@
 
 // scenario
 #include "zaplet/scenario/scenario.h"
-#include "zaplet/scenario/scenario_runner.h"
-#include "zaplet/scenario/step.h"
-
-// zsl
-#include "zaplet/scenario/zsl/zsl_lexer.h"
-#include "zaplet/scenario/zsl/zsl_parser.h"
-#include "zaplet/scenario/zsl/zsl_processor.h"
-
+#include "zaplet/scenario/yaml_parser.h"
+#include "zaplet/scenario/player.h"
 
 #endif // ZAPLET_H

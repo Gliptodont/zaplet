@@ -10,7 +10,7 @@
 #include "cli/commands/http/patch.h"
 #include "cli/commands/http/post.h"
 #include "cli/commands/http/put.h"
-#include "cli/commands/scenario/run.h"
+#include "cli/commands/scenario/play.h"
 
 #include <format>
 #include <iostream>
@@ -92,12 +92,10 @@ namespace zaplet::cli
         optCmd->setupOptions();
         m_commands.push_back(std::move(optCmd));
 
-        auto scenarioCmd = m_cliApp.add_subcommand("scenario", "Scenario management commands");
-
-        auto run = scenarioCmd->add_subcommand("run", "Run a test scenario using ZSL");
-        auto runScenarioCmd = std::make_unique<RunScenarioCommand>(run, m_client, m_formatter);
-        runScenarioCmd->setupOptions();
-        m_commands.push_back(std::move(runScenarioCmd));
+        auto play = m_cliApp.add_subcommand("play", "Execute the .zpl script");
+        auto playCmd = std::make_unique<PlayCommand>(play, m_client, m_formatter);
+        playCmd->setupOptions();
+        m_commands.push_back(std::move(playCmd));
 
         m_cliApp.require_subcommand(1);
     }

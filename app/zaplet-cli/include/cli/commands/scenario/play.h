@@ -2,17 +2,19 @@
  * Code written by Максим Пискарёв "gliptodont"
  */
 
-#ifndef RUN_H
-#define RUN_H
+#ifndef PLAY_H
+#define PLAY_H
 
 #include "cli/commands/command.h"
+
+#include <zaplet/zaplet.h>
 
 #include <string>
 #include <vector>
 
 namespace zaplet::cli
 {
-    class RunScenarioCommand final : public Command
+    class PlayCommand final : public Command
     {
     public:
         using Command::Command;
@@ -25,9 +27,7 @@ namespace zaplet::cli
     private:
         std::string m_scenarioFile;
         std::vector<std::string> m_variables;
-        bool m_continueOnError = false;
-        int m_repeatCount = 0;
     };
-} // namespace zaplet::cli
+}
 
-#endif // RUN_H
+#endif // PLAY_H

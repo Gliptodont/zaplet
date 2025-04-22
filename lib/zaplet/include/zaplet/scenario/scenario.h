@@ -5,7 +5,8 @@
 #ifndef SCENARIO_H
 #define SCENARIO_H
 
-#include "zaplet/scenario/step.h"
+#include "zaplet/http/request.h"
+#include "zaplet/http/response.h"
 
 #include <chrono>
 #include <map>
@@ -15,6 +16,17 @@
 
 namespace zaplet::scenario
 {
+    struct Step
+    {
+        std::string name;
+        std::string description;
+        http::Request request;
+        std::optional<http::Response> expectedResponse;
+        std::map<std::string, std::string> variables;
+        std::optional<std::string> condition;
+        std::optional<std::chrono::milliseconds> delay;
+    };
+
     class Scenario
     {
     public:
@@ -32,21 +44,21 @@ namespace zaplet::scenario
         void addStep(const Step& step);
 
         [[nodiscard]] const std::map<std::string, std::string>& getEnvironment() const;
-        void setEnvironment(const std::map<std::string, std::string>& environment);
+        void setEnvironment(const std::map<std::string, std::string>& env);
         void addEnvironmentVariable(const std::string& name, const std::string& value);
 
         [[nodiscard]] std::optional<int> getRepeatCount() const;
-        void setRepeatCount(std::optional<int> repeatCount);
+        void setRepeatCount(const std::optional<int>& count);
 
         [[nodiscard]] bool getContinueOnError() const;
-        void setContinueOnError(bool continueOnError);
+        void setContinueOnError(bool continue_);
 
     private:
         std::string m_name;
         std::string m_description;
         std::vector<Step> m_steps;
-        std::map<std::string, std::string> m_environment;
-        std::optional<int> m_repeatCount{ 1 };
+        std::map<std::string, std::string> m_env;
+        std::optional<int> m_repeatCount;
         bool m_continueOnError{ false };
     };
 } // namespace zaplet::scenario

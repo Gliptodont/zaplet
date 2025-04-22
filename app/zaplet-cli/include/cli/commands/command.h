@@ -5,8 +5,8 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
-#include <../../../../../build/debug/_deps/cli11-src/include/CLI/CLI.hpp>
-#include <../../../../../lib/zaplet/include/zaplet/zaplet.h>
+#include <CLI/CLI.hpp>
+#include <zaplet/zaplet.h>
 
 #include <memory>
 #include <string>

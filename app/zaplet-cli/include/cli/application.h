@@ -25,6 +25,7 @@ namespace zaplet::cli
           |_|
 )";
 
+
     class Application
     {
     public:

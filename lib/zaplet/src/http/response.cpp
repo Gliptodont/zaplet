@@ -75,15 +75,15 @@ namespace zaplet::http
 
     void printResponse(const std::string& response, int statusCode)
     {
-        if (statusCode >= 100 && statusCode < 400)
+        if (statusCode >= 100 && statusCode < 300)
         {
             LOG_INFO_FMT("Response Success: \n{}", response);
         }
-        else if (statusCode >= 400 && statusCode < 500)
+        else if (statusCode >= 300 && statusCode < 400)
         {
             LOG_WARNING_FMT("Response Warning: \n{}", response);
         }
-        else if (statusCode >= 500 && statusCode <= 599)
+        else if (statusCode >= 400 && statusCode <= 599)
         {
             LOG_ERROR_FMT("Response Error: \n{}", response);
         }

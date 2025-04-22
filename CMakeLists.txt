@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30)
 
 # Determining the name of the project and version
-project(zaplet VERSION 0.0.1 LANGUAGES CXX C)
+project(Zaplet VERSION 0.0.1 LANGUAGES CXX C)
 
 # Installation of C++ and C standards
 set(CMAKE_CXX_STANDARD 20)
@@ -36,6 +36,14 @@ add_subdirectory(lib)
 
 # Inclusion of executable applications
 add_subdirectory(app)
+
+set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
+set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
+set(CPACK_GENERATOR "ZIP")
+set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CMAKE_SYSTEM_NAME}")
+set(CPACK_INCLUDE_TOPLEVEL_DIRECTORY ON)
+
+include(CPack)
 
 message(STATUS "")
 message(STATUS "========== zaplet Build Configuration ==========")

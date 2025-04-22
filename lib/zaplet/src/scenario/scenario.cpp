@@ -43,17 +43,17 @@ namespace zaplet::scenario
 
     const std::map<std::string, std::string>& Scenario::getEnvironment() const
     {
-        return m_environment;
+        return m_env;
     }
 
-    void Scenario::setEnvironment(const std::map<std::string, std::string>& environment)
+    void Scenario::setEnvironment(const std::map<std::string, std::string>& env)
     {
-        m_environment = environment;
+        m_env = env;
     }
 
     void Scenario::addEnvironmentVariable(const std::string& name, const std::string& value)
     {
-        m_environment[name] = value;
+        m_env[name] = value;
     }
 
     std::optional<int> Scenario::getRepeatCount() const
@@ -61,9 +61,9 @@ namespace zaplet::scenario
         return m_repeatCount;
     }
 
-    void Scenario::setRepeatCount(std::optional<int> repeatCount)
+    void Scenario::setRepeatCount(const std::optional<int>& count)
     {
-        m_repeatCount = repeatCount;
+        m_repeatCount = count;
     }
 
     bool Scenario::getContinueOnError() const
@@ -71,8 +71,8 @@ namespace zaplet::scenario
         return m_continueOnError;
     }
 
-    void Scenario::setContinueOnError(bool continueOnError)
+    void Scenario::setContinueOnError(bool continue_)
     {
-        m_continueOnError = continueOnError;
+        m_continueOnError = continue_;
     }
 } // namespace zaplet::scenario

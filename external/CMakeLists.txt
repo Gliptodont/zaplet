@@ -30,6 +30,16 @@ FetchContent_Declare(json
 )
 FetchContent_MakeAvailable(json)
 
+# yaml-cpp
+FetchContent_Declare(yaml
+        GIT_REPOSITORY https://github.com/jbeder/yaml-cpp
+        GIT_TAG 0.8.0
+        GIT_SHALLOW ON
+        EXCLUDE_FROM_ALL
+        SYSTEM
+)
+FetchContent_MakeAvailable(yaml)
+
 # spdlog
 FetchContent_Declare(spdlog
         GIT_REPOSITORY https://github.com/gabime/spdlog
