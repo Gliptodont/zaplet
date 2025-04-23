@@ -53,7 +53,3 @@ target_link_libraries(${TARGET_NAME}
 )
 
 install(TARGETS ${TARGET_NAME} DESTINATION .)
-
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources/config/ DESTINATION config)
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources/docs/ DESTINATION docs)
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources/example/ DESTINATION example)

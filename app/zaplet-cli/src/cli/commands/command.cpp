@@ -2,7 +2,7 @@
  * Code written by Максим Пискарёв "gliptodont"
  */
 
-#include "../../../include/cli/commands/command.h"
+#include "cli/commands/command.h"
 
 namespace zaplet::cli
 {
