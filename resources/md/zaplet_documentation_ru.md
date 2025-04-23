@@ -40,13 +40,13 @@ Zaplet — это кроссплатформенная утилита коман
 Zaplet предоставляет интерфейс командной строки для выполнения HTTP-запросов и запуска сценариев. Общий формат команды:
 
 ```bash
-zaplet <команда> [опции]
+zaplet-cli <команда> [опции]
 ```
 
 Для получения справки по доступным командам:
 
 ```bash
-zaplet --help
+zaplet-cli --help
 ```
 
 ### HTTP-запросы
@@ -56,7 +56,7 @@ Zaplet поддерживает все основные HTTP-методы. Ни�
 #### GET-запрос
 
 ```bash
-zaplet get https://api.example.com/users
+zaplet-cli get https://api.example.com/users
 ```
 
 Дополнительные параметры:
@@ -65,13 +65,13 @@ zaplet get https://api.example.com/users
 
 Пример с заголовком авторизации:
 ```bash
-zaplet get https://api.example.com/users -H "Authorization: Bearer token123"
+zaplet-cli get https://api.example.com/users -H "Authorization: Bearer token123"
 ```
 
 #### POST-запрос
 
 ```bash
-zaplet post https://api.example.com/users -d '{"name": "John", "email": "john@example.com"}'
+zaplet-cli post https://api.example.com/users -d '{"name": "John", "email": "john@example.com"}'
 ```
 
 Дополнительные параметры:
@@ -83,7 +83,7 @@ zaplet post https://api.example.com/users -d '{"name": "John", "email": "john@ex
 #### PUT-запрос
 
 ```bash
-zaplet put https://api.example.com/users/1 -d '{"name": "John Updated", "email": "john@example.com"}'
+zaplet-cli put https://api.example.com/users/1 -d '{"name": "John Updated", "email": "john@example.com"}'
 ```
 
 Параметры аналогичны POST-запросу.
@@ -91,7 +91,7 @@ zaplet put https://api.example.com/users/1 -d '{"name": "John Updated", "email":
 #### DELETE-запрос
 
 ```bash
-zaplet delete https://api.example.com/users/1
+zaplet-cli delete https://api.example.com/users/1
 ```
 
 Параметры:
@@ -101,7 +101,7 @@ zaplet delete https://api.example.com/users/1
 #### PATCH-запрос
 
 ```bash
-zaplet patch https://api.example.com/users/1 -d '{"name": "John Patched"}'
+zaplet-cli patch https://api.example.com/users/1 -d '{"name": "John Patched"}'
 ```
 
 Параметры аналогичны POST-запросу.
@@ -109,7 +109,7 @@ zaplet patch https://api.example.com/users/1 -d '{"name": "John Patched"}'
 #### HEAD-запрос
 
 ```bash
-zaplet head https://api.example.com/users
+zaplet-cli head https://api.example.com/users
 ```
 
 Параметры:
@@ -119,7 +119,7 @@ zaplet head https://api.example.com/users
 #### OPTIONS-запрос
 
 ```bash
-zaplet options https://api.example.com/users
+zaplet-cli options https://api.example.com/users
 ```
 
 Параметры:
@@ -131,7 +131,7 @@ zaplet options https://api.example.com/users
 По умолчанию Zaplet форматирует вывод в YAML. Можно изменить формат вывода с помощью глобальной опции `--format` следующим образом:
 
 ```bash
-zaplet --format json get https://api.example.com/users
+zaplet-cli --format json get https://api.example.com/users
 ```
 
 Поддерживаемые форматы:
@@ -150,12 +150,12 @@ Zaplet позволяет выполнять ранее созданные сц�
 Для выполнения сценария используйте команду `play`:
 
 ```bash
-zaplet play my_scenario.zpl
+zaplet-cli play my_scenario.zpl
 ```
 
 С переменными (переопределение переменных из файла сценария):
 ```bash
-zaplet play my_scenario.zpl -v base_url=https://api.staging.example.com -v auth_token=test_token
+zaplet-cli play my_scenario.zpl -v base_url=https://api.staging.example.com -v auth_token=test_token
 ```
 
 Переменные, передаваемые через командную строку, имеют приоритет над переменными, определенными в файле сценария.
@@ -167,7 +167,7 @@ zaplet play my_scenario.zpl -v base_url=https://api.staging.example.com -v auth_
 Для добавления HTTP-заголовков к запросу используйте опцию `-H` или `--header`:
 
 ```bash
-zaplet get https://api.example.com/users -H "Authorization: Bearer token" -H "Accept: application/json"
+zaplet-cli get https://api.example.com/users -H "Authorization: Bearer token" -H "Accept: application/json"
 ```
 
 В сценариях заголовки указываются в секции `headers`:
@@ -186,7 +186,7 @@ request:
 Тайм-аут запроса указывается в секундах:
 
 ```bash
-zaplet get https://api.example.com/users -t 60
+zaplet-cli get https://api.example.com/users -t 60
 ```
 
 В сценариях:

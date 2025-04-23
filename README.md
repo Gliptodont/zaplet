@@ -186,13 +186,13 @@ After installation, the executable file will be available in the directory `buil
 Zaplet provides a command-line interface for executing HTTP requests and running scenarios. The general command format:
 
 ```bash
-zaplet <command> [options]
+zaplet-cli <command> [options]
 ```
 
 To get help on available commands:
 
 ```bash
-zaplet --help
+zaplet-cli --help
 ```
 
 ---
@@ -204,7 +204,7 @@ Zaplet supports all major HTTP methods. Below are examples of using each of them
 #### GET Request
 
 ```bash
-zaplet get https://api.example.com/users
+zaplet-cli get https://api.example.com/users
 ```
 
 Additional parameters:
@@ -213,13 +213,13 @@ Additional parameters:
 
 Example with an authorization header:
 ```bash
-zaplet get https://api.example.com/users -H "Authorization: Bearer token123"
+zaplet-cli get https://api.example.com/users -H "Authorization: Bearer token123"
 ```
 
 #### POST Request
 
 ```bash
-zaplet post https://api.example.com/users -d '{"name": "John", "email": "john@example.com"}'
+zaplet-cli post https://api.example.com/users -d '{"name": "John", "email": "john@example.com"}'
 ```
 
 Additional parameters:
@@ -231,7 +231,7 @@ Additional parameters:
 #### PUT Request
 
 ```bash
-zaplet put https://api.example.com/users/1 -d '{"name": "John Updated", "email": "john@example.com"}'
+zaplet-cli put https://api.example.com/users/1 -d '{"name": "John Updated", "email": "john@example.com"}'
 ```
 
 Parameters are similar to the POST request.
@@ -239,7 +239,7 @@ Parameters are similar to the POST request.
 #### DELETE Request
 
 ```bash
-zaplet delete https://api.example.com/users/1
+zaplet-cli delete https://api.example.com/users/1
 ```
 
 Parameters:
@@ -249,7 +249,7 @@ Parameters:
 #### PATCH Request
 
 ```bash
-zaplet patch https://api.example.com/users/1 -d '{"name": "John Patched"}'
+zaplet-cli patch https://api.example.com/users/1 -d '{"name": "John Patched"}'
 ```
 
 Parameters are similar to the POST request.
@@ -257,7 +257,7 @@ Parameters are similar to the POST request.
 #### HEAD Request
 
 ```bash
-zaplet head https://api.example.com/users
+zaplet-cli head https://api.example.com/users
 ```
 
 Parameters:
@@ -267,7 +267,7 @@ Parameters:
 #### OPTIONS Request
 
 ```bash
-zaplet options https://api.example.com/users
+zaplet-cli options https://api.example.com/users
 ```
 
 Parameters:
@@ -279,7 +279,7 @@ Parameters:
 By default, Zaplet formats the output in YAML. You can change the output format using the global `--format` option as follows:
 
 ```bash
-zaplet --format json get https://api.example.com/users
+zaplet-cli --format json get https://api.example.com/users
 ```
 
 Supported formats:
@@ -298,12 +298,12 @@ Detailed documentation on creating scenarios can be found in the separate file `
 To run a scenario, use the `play` command:
 
 ```bash
-zaplet play my_scenario.zpl
+zaplet-cli play my_scenario.zpl
 ```
 
 With variables (overriding variables from the scenario file):
 ```bash
-zaplet play my_scenario.zpl -v base_url=https://api.staging.example.com -v auth_token=test_token
+zaplet-cli play my_scenario.zpl -v base_url=https://api.staging.example.com -v auth_token=test_token
 ```
 
 Variables passed through the command line take precedence over variables defined in the scenario file.
@@ -315,7 +315,7 @@ Variables passed through the command line take precedence over variables defined
 To add HTTP headers to a request, use the `-H` or `--header` option:
 
 ```bash
-zaplet get https://api.example.com/users -H "Authorization: Bearer token" -H "Accept: application/json"
+zaplet-cli get https://api.example.com/users -H "Authorization: Bearer token" -H "Accept: application/json"
 ```
 
 ### Timeouts
@@ -323,7 +323,7 @@ zaplet get https://api.example.com/users -H "Authorization: Bearer token" -H "Ac
 The request timeout is specified in seconds:
 
 ```bash
-zaplet get https://api.example.com/users -t 60
+zaplet-cli get https://api.example.com/users -t 60
 ```
 
 ---
