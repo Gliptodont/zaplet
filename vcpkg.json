@@ -1,0 +1,15 @@
+{
+  "name": "zaplet",
+  "version": "0.0.1",
+  "dependencies": [
+    {
+      "name": "openssl"
+    }
+  ],
+  "overrides": [
+    {
+      "name": "openssl",
+      "version": "3.4.1"
+    }
+  ]
+}

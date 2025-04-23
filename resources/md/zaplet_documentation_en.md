@@ -1,6 +1,26 @@
-# zaplet
+# Zaplet User Guide
 
----
+## Table of Contents
+
+1. [Introduction](#introduction)
+3. [Basic Usage](#basic-usage)
+   - [HTTP Requests](#http-requests)
+     - [GET Request](#get-request)
+     - [POST Request](#post-request)
+     - [PUT Request](#put-request)
+     - [DELETE Request](#delete-request)
+     - [PATCH Request](#patch-request)
+     - [HEAD Request](#head-request)
+     - [OPTIONS Request](#options-request)
+   - [Output Formatting](#output-formatting)
+4. [Working with Scenarios](#working-with-scenarios)
+   - [Running a Scenario](#running-a-scenario)
+5. [Advanced Features](#advanced-features)
+   - [Request Headers](#request-headers)
+   - [Timeouts](#timeouts)
+6. [Logging](#logging)
+   - [Logging Configuration](#logging-configuration)
+7. [Troubleshooting](#troubleshooting)
 
 ## Introduction
 
@@ -15,157 +35,6 @@ Key features of Zaplet:
 - Convenient output formatting (JSON, YAML, table view)
 - Configurable logging system
 
----
-
-## Installation
-
-### Installation on Windows
-
-#### Prerequisites
-
-1. Microsoft Visual Studio 2019 or higher with C++ development components
-2. Git
-3. CMake version 3.30 or higher
-
-#### Installation Steps
-
-1. Clone the Zaplet repository:
-```bash
-git clone https://github.com/your-repo/zaplet.git
-cd zaplet
-```
-
-2. Initialize and update submodules:
-```bash
-git submodule update --init --recursive
-```
-
-3. Set up vcpkg:
-```bash
-cd external
-git clone https://github.com/Microsoft/vcpkg.git
-cd vcpkg
-bootstrap-vcpkg.bat
-```
-
-4. Build with CMake:
-```bash
-cd ..\..\
-cmake --preset=Debug-Windows
-cmake --build build/debug --config Debug
-```
-
-5. For building a release version:
-```bash
-cmake --preset=Release-Windows
-cmake --build build/release --config Release
-```
-
-After installation, the executable file will be available in the directory `build/debug/app/zaplet.exe` or `build/release/app/zaplet.exe` depending on the selected configuration.
-
-### Installation on Linux
-
-#### Prerequisites
-
-1. GCC compiler version 10 or higher
-2. Git
-3. CMake version 3.30 or higher
-4. Development tools: build-essential, pkg-config
-
-#### Installation Steps
-
-1. Install the necessary packages:
-```bash
-sudo apt-get update
-sudo apt-get install -y build-essential pkg-config cmake git
-```
-
-2. Clone the Zaplet repository:
-```bash
-git clone https://github.com/your-repo/zaplet.git
-cd zaplet
-```
-
-3. Initialize and update submodules:
-```bash
-git submodule update --init --recursive
-```
-
-4. Set up vcpkg:
-```bash
-cd external
-git clone https://github.com/Microsoft/vcpkg.git
-cd vcpkg
-./bootstrap-vcpkg.sh
-```
-
-5. Build with CMake:
-```bash
-cd ../../
-cmake --preset=Debug-Linux
-cmake --build build/debug
-```
-
-6. For building a release version:
-```bash
-cmake --preset=Release-Linux
-cmake --build build/release
-```
-
-After installation, the executable file will be available in the directory `build/debug/app/zaplet` or `build/release/app/zaplet` depending on the selected configuration.
-
-### Installation on macOS
-
-#### Prerequisites
-
-1. Xcode Command Line Tools or Xcode
-2. Git
-3. CMake version 3.30 or higher
-4. Homebrew (optional, for installing dependencies)
-
-#### Installation Steps
-
-1. Install the necessary packages:
-```bash
-brew install cmake
-```
-
-2. Clone the Zaplet repository:
-```bash
-git clone https://github.com/your-repo/zaplet.git
-cd zaplet
-```
-
-3. Initialize and update submodules:
-```bash
-git submodule update --init --recursive
-```
-
-4. Set up vcpkg:
-```bash
-cd external
-git clone https://github.com/Microsoft/vcpkg.git
-cd vcpkg
-./bootstrap-vcpkg.sh
-```
-
-5. Build with CMake:
-```bash
-cd ../../
-cmake --preset=Debug-macOS
-cmake --build build/debug
-```
-
-6. For building a release version:
-```bash
-cmake --preset=Release-macOS
-cmake --build build/release
-```
-
-After installation, the executable file will be available in the directory `build/debug/app/zaplet` or `build/release/app/zaplet` depending on the selected configuration.
-
----
-
 ## Basic Usage
 
 Zaplet provides a command-line interface for executing HTTP requests and running scenarios. The general command format:
@@ -179,8 +48,6 @@ To get help on available commands:
 ```bash
 zaplet --help
 ```
-
----
 
 ### HTTP Requests
 
@@ -311,8 +178,6 @@ The request timeout is specified in seconds:
 zaplet get https://api.example.com/users -t 60
 ```
 
----
-
 ## Logging
 
 Zaplet supports flexible logging with configuration options.
@@ -362,3 +227,27 @@ Available logging levels:
 - **error**: errors
 - **fatal**: critical errors
 - **off**: logging disabled
+
+## Troubleshooting
+
+### Common Problems and Solutions
+
+1. **Problem**: "Invalid URL" error
+   **Solution**: Make sure the URL starts with `http://` or `https://`
+
+2. **Problem**: "Connection refused" error
+   **Solution**: Check the server availability and URL correctness
+
+3. **Problem**: "Failed to parse file" error
+   **Solution**: Check the YAML syntax in the scenario file
+
+4. **Problem**: "Scenario file does not exist" error
+   **Solution**: Check the path to the scenario file and its existence
+
+### Debugging and Logging
+
+For more detailed information about errors, change the logging level to `debug` or `trace` in the `config/logger.conf` file.
+
+---
+
+**Note**: This guide covers the basic capabilities of Zaplet. For additional information about using HTTP requests and running scenarios, use the `zaplet --help` command. Detailed documentation on creating scenarios can be found in the `scenario_writing_en.pdf` file.
