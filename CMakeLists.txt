@@ -1,5 +1,11 @@
 cmake_minimum_required(VERSION 3.30)
 
+if(DEFINED CMAKE_TOOLCHAIN_FILE)
+    # GitHub Actions с vcpkg сам устанавливает переменную — не трогаем
+else()
+    set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/external/vcpkg/scripts/buildsystems/vcpkg.cmake")
+endif()
+
 # Determining the name of the project and version
 project(Zaplet VERSION 1.0.0 LANGUAGES CXX C)
 
@@ -10,12 +16,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
-
-if(DEFINED CMAKE_TOOLCHAIN_FILE)
-    # GitHub Actions с vcpkg сам устанавливает переменную — не трогаем
-else()
-    set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/external/vcpkg/scripts/buildsystems/vcpkg.cmake")
-endif()
 
 
 # Assembly options
