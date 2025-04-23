@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.30)
 
-if(DEFINED CMAKE_TOOLCHAIN_FILE)
-    # GitHub Actions с vcpkg сам устанавливает переменную — не трогаем
-else()
+if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/external/vcpkg/scripts/buildsystems/vcpkg.cmake")
 endif()
 
