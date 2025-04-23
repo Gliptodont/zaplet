@@ -2,6 +2,21 @@
 
 ---
 
+![C++](https://img.shields.io/badge/c++-%2300599C.svg?&logo=c%2B%2B&logoColor=white)
+![Release](https://img.shields.io/badge/release-v1.0.0-blue)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Gliptodont/zaplet/blob/master/LICENSE)
+
+![Windows](https://img.shields.io/badge/Windows-supported-brightgreen?logo=windows)
+![Linux](https://img.shields.io/badge/Linux-not%20supported-red?logo=linux)
+![macOS](https://img.shields.io/badge/macOS-not%20supported-red?logo=apple)
+
+![MSVC](https://img.shields.io/badge/MSVC%202022-supported-brightgreen?logo=visualstudio)
+![GCC](https://img.shields.io/badge/GCC-not%20supported-red?logo=gnu)
+![Clang](https://img.shields.io/badge/Clang-not%20supported-red?logo=clang)
+
+
+---
+
 ## Introduction
 
 Zaplet is a cross-platform command-line utility written in C++20, designed for testing REST APIs and creating/replaying test scenarios. Zaplet allows you to perform various types of HTTP requests, configure headers, send data, and analyze responses in a convenient format.
@@ -31,7 +46,7 @@ Key features of Zaplet:
 
 1. Clone the Zaplet repository:
 ```bash
-git clone https://github.com/your-repo/zaplet.git
+git clone https://github.com/Gliptodont/zaplet.git
 cd zaplet
 ```
 
