@@ -78,6 +78,7 @@ target_include_directories(${TARGET_NAME}
 )
 
 find_package(OpenSSL REQUIRED)
+find_package(yaml-cpp CONFIG REQUIRED)
 
 target_link_libraries(${TARGET_NAME}
         spdlog::spdlog

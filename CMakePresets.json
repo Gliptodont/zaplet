@@ -14,6 +14,8 @@
                 "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_C_COMPILER": "/usr/bin/gcc",
                 "CMAKE_CXX_COMPILER": "/usr/bin/g++",
+                "CMAKE_POLICY_DEFAULT_CMP0077": "NEW",
+                "CMAKE_POLICY_VERSION": "3.5",
                 "VCPKG_TARGET_TRIPLET": "x64-linux"
             }
         },
@@ -30,6 +32,8 @@
                 "CMAKE_BUILD_TYPE": "Release",
                 "CMAKE_C_COMPILER": "/usr/bin/gcc",
                 "CMAKE_CXX_COMPILER": "/usr/bin/g++",
+                "CMAKE_POLICY_DEFAULT_CMP0077": "NEW",
+                "CMAKE_POLICY_VERSION": "3.5",
                 "VCPKG_TARGET_TRIPLET": "x64-linux"
             }
         },
@@ -48,6 +52,8 @@
                 "CMAKE_CXX_COMPILER": "cl",
                 "CMAKE_AR": "lib",
                 "CMAKE_RANLIB": "lib",
+                "CMAKE_POLICY_DEFAULT_CMP0077": "NEW",
+                "CMAKE_POLICY_VERSION": "3.5",
                 "VCPKG_TARGET_TRIPLET": "x64-windows-static",
                 "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDebug"
             }
@@ -67,6 +73,8 @@
                 "CMAKE_CXX_COMPILER": "cl",
                 "CMAKE_AR": "lib",
                 "CMAKE_RANLIB": "lib",
+                "CMAKE_POLICY_DEFAULT_CMP0077": "NEW",
+                "CMAKE_POLICY_VERSION": "3.5",
                 "VCPKG_TARGET_TRIPLET": "x64-windows-static",
                 "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded"
             }
@@ -84,6 +92,8 @@
                 "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_C_COMPILER": "/usr/bin/clang",
                 "CMAKE_CXX_COMPILER": "/usr/bin/clang++",
+                "CMAKE_POLICY_DEFAULT_CMP0077": "NEW",
+                "CMAKE_POLICY_VERSION": "3.5",
                 "VCPKG_TARGET_TRIPLET": "x64-osx"
             }
         },
@@ -100,6 +110,8 @@
                 "CMAKE_BUILD_TYPE": "Release",
                 "CMAKE_C_COMPILER": "/usr/bin/clang",
                 "CMAKE_CXX_COMPILER": "/usr/bin/clang++",
+                "CMAKE_POLICY_DEFAULT_CMP0077": "NEW",
+                "CMAKE_POLICY_VERSION": "3.5",
                 "VCPKG_TARGET_TRIPLET": "x64-osx"
             }
         }
