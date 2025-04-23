@@ -4,12 +4,19 @@
   "dependencies": [
     {
       "name": "openssl"
+    },
+    {
+      "name": "yaml-cpp"
     }
   ],
   "overrides": [
     {
       "name": "openssl",
       "version": "3.4.1"
+    },
+    {
+      "name": "yaml-cpp",
+      "version": "0.8.0#2"
     }
   ]
 }
