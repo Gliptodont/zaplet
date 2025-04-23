@@ -23,39 +23,23 @@ jobs:
       - name: Install CMake
         uses: lukka/get-cmake@latest
 
-      - name: Setup vcpkg
+      - name: Setup and run vcpkg
         uses: lukka/run-vcpkg@v11
         with:
           vcpkgJsonGlob: '**/vcpkg.json'
+          runVcpkgInstall: true
 
-      - name: Cache vcpkg artifacts
-        uses: actions/cache@v4
+      - name: Run CMake configuration and build
+        uses: lukka/run-cmake@v10
         with:
-          path: |
-            ~/.cache/vcpkg
-            **/buildtrees
-            **/downloads
-          key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
-          restore-keys: |
-            ${{ runner.os }}-vcpkg-
-
-      - name: Configure project
-        run: |
-          case "${{ runner.os }}" in
-            Linux)  cmake --preset=Release-Linux ;;
-            Windows) cmake --preset=Release-Windows ;;
-            macOS)  cmake --preset=Release-macOS ;;
-          esac
-        shell: bash
-
-      - name: Build project
-        run: |
-          case "${{ runner.os }}" in
-            Linux)  cmake --build --preset=Release-Linux --parallel ;;
-            Windows) cmake --build --preset=Release-Windows --parallel ;;
-            macOS)  cmake --build --preset=Release-macOS --parallel ;;
-          esac
-        shell: bash
+          configurePreset: >
+            ${{ matrix.os == 'ubuntu-latest' && 'Release-Linux' ||
+                matrix.os == 'windows-latest' && 'Release-Windows' ||
+                matrix.os == 'macos-latest' && 'Release-macOS' }}
+          buildPreset: >
+            ${{ matrix.os == 'ubuntu-latest' && 'Release-Linux' ||
+                matrix.os == 'windows-latest' && 'Release-Windows' ||
+                matrix.os == 'macos-latest' && 'Release-macOS' }}
 
       - name: Run CPack
         run: |
