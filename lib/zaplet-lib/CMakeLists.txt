@@ -1,4 +1,4 @@
-set(TARGET_NAME zaplet)
+set(TARGET_NAME zaplet-lib)
 
 # Configurate a version
 configure_file(
@@ -7,7 +7,7 @@ configure_file(
 )
 
 # We collect a list of source files
-set(ZAPLET_SOURCES
+set(ZAPLET_LIB_SOURCES
         # ini
         src/ini/INIreader.cpp
 
@@ -32,7 +32,7 @@ set(ZAPLET_SOURCES
         src/scenario/player.cpp
 )
 
-set(ZAPLET_PUBLIC_HEADERS
+set(ZAPLET_LIB_PUBLIC_HEADERS
         include/zaplet/zaplet.h
         include/zaplet/version.h
 
@@ -71,7 +71,7 @@ if (BUILD_SHARED_LIBS)
 endif ()
 
 
-add_library(${TARGET_NAME} ${LIB_TYPE} ${ZAPLET_SOURCES} ${ZAPLET_PUBLIC_HEADERS})
+add_library(${TARGET_NAME} ${LIB_TYPE} ${ZAPLET_LIB_SOURCES} ${ZAPLET_LIB_PUBLIC_HEADERS})
 
 target_include_directories(${TARGET_NAME}
         PUBLIC include

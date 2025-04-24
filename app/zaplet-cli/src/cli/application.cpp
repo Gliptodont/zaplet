@@ -15,7 +15,6 @@
 #include <format>
 #include <iostream>
 
-
 namespace zaplet::cli
 {
     Application::Application(int argc, char** argv)
@@ -27,6 +26,7 @@ namespace zaplet::cli
 
         m_formatter = output::FormatterFactory::create(m_outputFormat);
 
+        parseGlobalOptions();
         setupCommands();
     }
 
@@ -34,13 +34,13 @@ namespace zaplet::cli
     {
         try
         {
-            m_cliApp.final_callback([&]()
-            {
-                logging::Logger::getInstance().flush();
-            });
-            m_cliApp.parse(m_argc, m_argv);
+            m_cliApp.final_callback(
+                [&]()
+                {
+                    logging::Logger::getInstance().flush();
+                });
 
-            parseGlobalOptions();
+            m_cliApp.parse(m_argc, m_argv);
 
             if (m_cliApp.get_subcommands().empty() && m_cliApp.count("--help") == 0)
             {
@@ -100,7 +100,8 @@ namespace zaplet::cli
         m_cliApp.require_subcommand(1);
     }
 
-    void Application::parseGlobalOptions() const
+    void Application::parseGlobalOptions()
     {
+        m_cliApp.add_option("--format", m_outputFormat, "Output format (json, yaml, table)")->default_str("yaml");
     }
 } // namespace zaplet::cli

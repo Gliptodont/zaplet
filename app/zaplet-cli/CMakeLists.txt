@@ -48,7 +48,7 @@ add_executable(${TARGET_NAME} ${ZAPLET_CLI_SOURCES} ${ZAPLET_CLI_HEADERS})
 target_include_directories(${TARGET_NAME} PRIVATE include)
 
 target_link_libraries(${TARGET_NAME}
-        zaplet
+        zaplet-lib
         CLI11::CLI11
 )
 
