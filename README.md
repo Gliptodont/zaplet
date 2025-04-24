@@ -3,15 +3,15 @@
 ---
 
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?&logo=c%2B%2B&logoColor=white)
-![Release](https://img.shields.io/badge/release-v1.0.0-blue)
+![Release](https://img.shields.io/badge/release-v1.0.2-blue)
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Gliptodont/zaplet/blob/master/LICENSE)
 
 ![Windows](https://img.shields.io/badge/Windows-supported-brightgreen?logo=windows)
-![Linux](https://img.shields.io/badge/Linux-not%20supported-red?logo=linux)
+![Linux](https://img.shields.io/badge/Linux-supported-brightgreen?logo=linux)
 ![macOS](https://img.shields.io/badge/macOS-not%20supported-red?logo=apple)
 
 ![MSVC](https://img.shields.io/badge/MSVC%202022-supported-brightgreen?logo=visualstudio)
-![GCC](https://img.shields.io/badge/GCC-not%20supported-red?logo=gnu)
+![GCC](https://img.shields.io/badge/GCC-supported-brightgreen?logo=gnu)
 ![Clang](https://img.shields.io/badge/Clang-not%20supported-red?logo=clang)
 
 
