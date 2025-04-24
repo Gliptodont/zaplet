@@ -32,8 +32,8 @@ namespace zaplet::output
         }
         else
         {
-            LOG_WARNING_FMT("Unknown format '{}', falling back to JSON", format);
-            return std::make_shared<JsonFormatter>();
+            LOG_WARNING_FMT("Unknown format '{}', falling back to YAML", format);
+            return std::make_shared<YamlFormatter>();
         }
     }
 } // namespace zaplet::output

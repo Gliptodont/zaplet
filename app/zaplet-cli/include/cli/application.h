@@ -45,7 +45,7 @@ namespace zaplet::cli
         std::string m_outputFormat = "yaml";
 
         void setupCommands();
-        void parseGlobalOptions() const;
+        void parseGlobalOptions();
     };
 } // namespace zaplet::cli
 

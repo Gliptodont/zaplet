@@ -1,1 +1,1 @@
-add_subdirectory(zaplet)
+add_subdirectory(zaplet-lib)
