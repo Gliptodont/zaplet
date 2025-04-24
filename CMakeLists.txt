@@ -1,11 +1,11 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.25)
 
 if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/external/vcpkg/scripts/buildsystems/vcpkg.cmake")
 endif()
 
 # Determining the name of the project and version
-project(Zaplet VERSION 1.0.0 LANGUAGES CXX C)
+project(Zaplet VERSION 1.0.2 LANGUAGES CXX C)
 
 # Installation of C++ and C standards
 set(CMAKE_CXX_STANDARD 20)
